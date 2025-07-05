@@ -1,5 +1,5 @@
 {
-    "name": "MAH.PackageJson_Generator",
+    "name": "MAH.PackageJson_Generator.Editor",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [
