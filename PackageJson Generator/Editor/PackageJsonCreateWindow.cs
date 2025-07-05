@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -407,7 +408,9 @@ namespace MAH.Tools.PackageJsonGenerator.Editor
             {
                 EditorGUILayout.LabelField(PACKAGE_INFO_CHANGELOG_URL_LABEL, label_layout);
                 string url = EditorGUILayout.DelayedTextField(_optionalSettings.ChangelogURL, GUILayout.ExpandWidth(true));
-                if (IsValidURL(url))
+                if (string.IsNullOrEmpty(url))
+                    _optionalSettings.ChangelogURL = string.Empty;
+                else if (IsValidURL(url))
                     _optionalSettings.ChangelogURL = url;
                 if (GUILayout.Button(PACKAGE_INFO_AUTHOR_URL_OPEN_BUTTON, button_layout))
                 {
@@ -421,7 +424,9 @@ namespace MAH.Tools.PackageJsonGenerator.Editor
             {
                 EditorGUILayout.LabelField(PACKAGE_INFO_DOCUMENTATION_URL_LABEL, label_layout);
                 string url = EditorGUILayout.DelayedTextField(_optionalSettings.DocumentationURL, GUILayout.ExpandWidth(true));
-                if (IsValidURL(url))
+                if (string.IsNullOrEmpty(url))
+                    _optionalSettings.DocumentationURL = string.Empty;
+                else if (IsValidURL(url))
                     _optionalSettings.DocumentationURL = url;
                 if (GUILayout.Button(PACKAGE_INFO_AUTHOR_URL_OPEN_BUTTON, button_layout))
                 {
@@ -435,7 +440,9 @@ namespace MAH.Tools.PackageJsonGenerator.Editor
             {
                 EditorGUILayout.LabelField(PACKAGE_INFO_LICENSES_URL_LABEL, label_layout);
                 string url = EditorGUILayout.DelayedTextField(_optionalSettings.LicensesURL, GUILayout.ExpandWidth(true));
-                if (IsValidURL(url))
+                if (string.IsNullOrEmpty(url))
+                    _optionalSettings.LicensesURL = string.Empty;
+                else if (IsValidURL(url))
                     _optionalSettings.LicensesURL = url;
                 if (GUILayout.Button(PACKAGE_INFO_AUTHOR_URL_OPEN_BUTTON, button_layout))
                 {
@@ -644,7 +651,9 @@ namespace MAH.Tools.PackageJsonGenerator.Editor
                                         EditorGUILayout.LabelField(PACKAGE_INFO_NAME_LABEL, depensencies_layout);
                                         string name = EditorGUILayout.TextField(dependencies.PacckageName, GUILayout.ExpandWidth(true));
                                         name = name.ToLowerInvariant();
-                                        if (IsValidPackageName(name))
+                                        if (string.IsNullOrEmpty(name))
+                                            dependencies.PacckageName = "com.";
+                                        else if (IsValidPackageName(name))
                                             dependencies.PacckageName = name;
 
                                         EditorGUI.BeginDisabledGroup(!UnityPackageHelper.AccIsLoaded);
