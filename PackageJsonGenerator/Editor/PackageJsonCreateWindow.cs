@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -13,8 +12,8 @@ namespace MAH.Tools.PackageJsonGenerator.Editor
     public class PackageJsonCreateWindow : EditorWindow
     {
         //====定数======================================
-        private const string PACKAGE_JSON_CREATE_WINDOW_NAME = "Unity Prefs Editor";
-        private const string PACKAGE_JSON_MENU_PATH = "MAH/Generator/PackageJson Create Window";
+        private const string PACKAGE_JSON_CREATE_WINDOW_NAME = "PackageJson Generator";
+        private const string PACKAGE_JSON_MENU_PATH = "MAH/Generator/PackageJson Generator Window";
 
         private const string PACKGAGE_JSON_OUTPUT_DEFAULT_PATH = "Assets";
 
